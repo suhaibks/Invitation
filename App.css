@@ -6,7 +6,6 @@
     --text-light: #5A7063; /* Softened Emerald for secondary text */
     --accent-color: #D4AF37; /* Rich Gold */
     --muted-bg: #F0F4F1; /* Very subtle mint/cream tint */
-    --curtain-color: #0B3B2C; /* Dark, luxurious emerald for the curtain */
     
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Inter', sans-serif;
@@ -50,38 +49,94 @@ p { margin-bottom: 1rem; font-weight: 300; }
     100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
 }
 
-/* --- Realistic Cinematic Curtain Physics --- */
-.curtain-wrapper {
-    position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center;
-    pointer-events: all; perspective: 1200px; background-color: var(--bg-color);
+/* --- NEW: Floral Circle Reveal Animation --- */
+.floral-reveal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    transition: background-color 1.5s ease-in-out;
 }
 
-.curtain-panel {
-    position: absolute; top: 0; width: 50%; height: 100%;
-    background-color: var(--curtain-color);
-    background-image: 
-        linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, transparent 15%, transparent 85%, rgba(0, 0, 0, 0.2) 100%),
-        repeating-linear-gradient(to right, rgba(212, 175, 55, 0.05) 0%, rgba(0, 0, 0, 0.15) 4%, transparent 8%, rgba(0, 0, 0, 0.15) 12%, rgba(212, 175, 55, 0.05) 16%);
-    background-size: 100% 100%, 150px 100%;
-    transition: transform 1.8s cubic-bezier(0.64, 0.04, 0.35, 1);
-    box-shadow: inset 0 0 40px rgba(0,0,0,0.3);
+.flower-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* This creates the "fade out to full screen" effect */
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s ease-in-out;
 }
 
-.curtain-panel.left { left: 0; transform-origin: left center; border-right: 1px solid rgba(212,175,55,0.2); }
-.curtain-panel.right { right: 0; transform-origin: right center; border-left: 1px solid rgba(212,175,55,0.2); }
-.curtain-wrapper.open .curtain-panel.left { transform: scaleX(0.04) translateZ(-20px); }
-.curtain-wrapper.open .curtain-panel.right { transform: scaleX(0.04) translateZ(-20px); }
-.curtain-wrapper.hidden { pointer-events: none; visibility: hidden; transition: visibility 0s 1.8s; }
-
-/* --- Calligraphic Open Invitation Trigger --- */
-.open-invitation-text {
-    position: relative; z-index: 10000; color: var(--accent-color); font-family: var(--font-heading);
-    font-size: clamp(3rem, 8vw, 5.5rem); font-style: italic; cursor: pointer;
-    transition: opacity var(--trans-med) ease, transform var(--trans-med) ease, color var(--trans-fast) ease;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+.floral-reveal-overlay.open {
+    background-color: transparent;
+    pointer-events: none;
 }
-.open-invitation-text:hover { transform: scale(1.05); color: #FFF; }
-.curtain-wrapper.open .open-invitation-text { opacity: 0; pointer-events: none; transform: scale(0.9); }
+
+.floral-reveal-overlay.open .flower-container {
+    transform: scale(25); /* Scales massively to fill/pass the screen */
+    opacity: 0; /* Fades out smoothly */
+}
+
+.floral-reveal-overlay.hidden {
+    visibility: hidden;
+    display: none;
+}
+
+/* The Central Bismillah Circle */
+.bismillah-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: var(--text-main);
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--accent-color);
+    z-index: 2;
+    transition: transform var(--trans-fast) ease, box-shadow var(--trans-fast) ease, background-color var(--trans-fast) ease;
+}
+
+.flower-container:hover .bismillah-circle {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+    background-color: #0c3d2f; /* Slightly darker emerald on hover */
+}
+
+/* The Elegant CSS Geometric Flower */
+.css-flower {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    animation: spinFlower 25s linear infinite;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.flower-petal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-color);
+    transition: border-color var(--trans-fast) ease;
+}
+.flower-container:hover .flower-petal { border-color: rgba(212, 175, 55, 1); opacity: 1; }
+
+.flower-petal:nth-child(1) { transform: rotate(0deg) scaleX(0.4); }
+.flower-petal:nth-child(2) { transform: rotate(45deg) scaleX(0.4); }
+.flower-petal:nth-child(3) { transform: rotate(90deg) scaleX(0.4); }
+.flower-petal:nth-child(4) { transform: rotate(135deg) scaleX(0.4); }
+
+@keyframes spinFlower {
+    100% { transform: rotate(360deg); }
+}
 
 /* Animation Classes */
 .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
@@ -108,6 +163,102 @@ p { margin-bottom: 1rem; font-weight: 300; }
 .hero-content { background: rgba(253, 251, 247, 0.9); padding: 50px 30px; border-radius: 4px; backdrop-filter: blur(5px); border: 1px solid rgba(212, 175, 55, 0.3); }
 .hero h1 { font-size: clamp(3rem, 8vw, 6rem); margin: 15px 0; color: var(--text-main); }
 .hero .bismillah { font-size: 2rem; color: var(--accent-color); font-family: 'Arial', sans-serif; margin-bottom: 10px; }
+.hero .tagline { font-family: var(--font-body); letter-spacing: 3px; text-transform: uppercase; font-size: 0.75rem; color: var(--text-light); }
+.hero .invitation-line { font-family: var(--font-heading); font-style: italic; font-size: 1.2rem; margin: 20px 0; color: var(--text-main); }
+.hero .scroll-prompt { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); animation: pulse 2s infinite; }
+
+@keyframes pulse { 0% { opacity: 0.5; transform: translate(-50%, 0); } 50% { opacity: 1; transform: translate(-50%, 5px); } 100% { opacity: 0.5; transform: translate(-50%, 0); } }
+
+/* Editorial Couple Showcase */
+.couple-showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    margin-top: 50px;
+    padding-bottom: 40px;
+}
+@media (min-width: 768px) {
+    .couple-showcase {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0;
+    }
+}
+.portrait-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    transition: transform var(--trans-med) ease;
+}
+.portrait-wrapper img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(212,175,55,0.4);
+}
+.portrait-groom { z-index: 2; }
+.portrait-bride { z-index: 1; }
+
+@media (min-width: 768px) {
+    /* Asymmetrical Overlap for larger screens */
+    .portrait-groom { transform: translateX(30px) translateY(-20px); }
+    .portrait-groom:hover { transform: translateX(30px) translateY(-30px); }
+    .portrait-bride { transform: translateX(-30px) translateY(40px); }
+    .portrait-bride:hover { transform: translateX(-30px) translateY(30px); }
+}
+
+.portrait-caption {
+    text-align: center;
+    margin-top: 20px;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--text-main);
+}
+.portrait-role {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent-color);
+    margin-top: 5px;
+}
+
+/* Countdown Section */
+.countdown-grid { display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
+.countdown-box { background: var(--bg-color); border: 1px solid rgba(212, 175, 55, 0.4); padding: 20px; min-width: 100px; text-align: center; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+.countdown-box span { display: block; font-family: var(--font-heading); font-size: 2.5rem; color: var(--accent-color); line-height: 1; }
+.countdown-box label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-light); }
+
+/* Events Section */
+.events-container { background-color: var(--muted-bg); }
+.event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+.event-card {
+    background-color: var(--bg-color); padding: 40px 30px; text-align: center;
+    border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: transform var(--trans-fast) ease;
+    border-top: 3px solid var(--accent-color);
+}
+.event-card:hover { transform: translateY(-5px); }
+.event-card h3 { font-size: 1.8rem; margin-bottom: 10px; color: var(--text-main); }
+.event-card .time-pill { display: inline-block; padding: 4px 12px; background: var(--muted-bg); color: var(--text-main); font-size: 0.8rem; letter-spacing: 1px; border-radius: 20px; margin-bottom: 15px; border: 1px solid rgba(212,175,55,0.3); }
+
+/* Venue & Details */
+.details-box { border: 1px solid rgba(212, 175, 55, 0.4); padding: 40px; text-align: center; margin: 40px auto 0; max-width: 600px; background: #FFF; border-radius: 4px; }
+
+/* RSVP Section */
+.rsvp-section { background-color: var(--muted-bg); }
+.rsvp-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; background: #FFF; padding: 40px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid rgba(212,175,55,0.2); }
+.form-group { display: flex; flex-direction: column; text-align: left; }
+.form-group label { font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; color: var(--text-light); }
+.form-control { padding: 14px 12px; background: transparent; border: 1px solid #E0E0E0; color: var(--text-main); font-family: var(--font-body); font-size: 1rem; border-radius: 2px; transition: border-color var(--trans-fast) ease; }
+.form-control:focus { outline: none; border-color: var(--accent-color); }
+
+/* Footer */
+.footer { padding: 80px 20px; text-align: center; background-color: var(--bg-color); border-top: 1px solid rgba(212,175,55,0.2); }
+.footer h2 { font-size: 3rem; margin-top: 15px; color: var(--accent-color); }
 .hero .tagline { font-family: var(--font-body); letter-spacing: 3px; text-transform: uppercase; font-size: 0.75rem; color: var(--text-light); }
 .hero .invitation-line { font-family: var(--font-heading); font-style: italic; font-size: 1.2rem; margin: 20px 0; color: var(--text-main); }
 .hero .scroll-prompt { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); animation: pulse 2s infinite; }
