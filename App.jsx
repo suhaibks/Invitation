@@ -146,7 +146,7 @@ const App = () => {
           <p className="invitation-line delay-3">Joyfully invite you to witness the Nikah and celebrate their union</p>
           
           <p className="tagline delay-3" style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>October 25, 2026 • 11:30 AM</p>
-          <p className="tagline delay-3">The Grand Palace, New Delhi</p>
+          <p className="tagline delay-3">Anvaya The Marquee, Kushalnagar</p>
         </div>
         <div className="scroll-prompt fade-in delay-3">Scroll to unveil the evening</div>
       </header>
