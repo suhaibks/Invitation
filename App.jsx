@@ -277,20 +277,21 @@ const App = () => {
         </div>
       </section>
 
-      {/* 7. Closing Section */}
-      <footer className="footer fade-in">
-        <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Awaiting Your Presence</h3>
-        <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-light)' }}>
-          We look forward to celebrating this special day with you. Your presence and duas will make our celebration truly meaningful.
-        </p>
-        <p style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginTop: '40px' }}>With love & prayers,</p>
-        
-        <h2 style={{ lineHeight: '1.2' }}>
-          Bilal <br />
-          <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
-          Zakya Fathima
-        </h2>
-      </footer>
+{/* 7. Closing Section */}
+<footer className="footer fade-in">
+  <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Awaiting Your Presence</h3>
+  <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-light)' }}>
+    We look forward to celebrating this special day with you. Your presence and duas will make our celebration truly meaningful.
+  </p>
+  <p style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginTop: '40px' }}>With love & prayers,</p>
+  
+  <h2 className="footer-names">
+    Bilal <br />
+    <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
+    Zakya Fathima
+  </h2>
+</footer>
+
     </>
   );
 };
