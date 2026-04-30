@@ -154,7 +154,7 @@ const App = () => {
             </div>
 
             <div className="portrait-wrapper portrait-bride fade-in delay-2">
-              <img src="/api/placeholder/400/550" alt="Zakya Fathima" loading="lazy" />
+              <img src="/Bride.jpg" alt="Zakya Fathima" loading="lazy" />
               <div className="portrait-caption">
                 Zakya Fathima
                 <div className="portrait-role">The Bride</div>
