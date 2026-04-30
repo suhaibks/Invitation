@@ -1,0 +1,285 @@
+import React, { useState, useEffect } from 'react';
+import './App.css';
+
+const App = () => {
+  const [curtainOpen, setCurtainOpen] = useState(false);
+  const [curtainHidden, setCurtainHidden] = useState(false);
+  
+  // Countdown State
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  // Form state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target); 
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll('.fade-in');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Countdown Timer Logic - Set to Nikah Time: Oct 25, 2026 at 11:30 AM
+  useEffect(() => {
+    const targetDate = new Date("Oct 25, 2026 11:30:00").getTime();
+    
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Open curtain triggered by pure calligraphic text
+  const openCurtain = () => {
+    setCurtainOpen(true);
+    setTimeout(() => { setCurtainHidden(true); }, 1800);
+  };
+
+  // Google Form Submission Handler
+  const handleRSVPSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    try {
+      // NOTE: Replace with your actual Google Form POST action URL.
+      await fetch('YOUR_GOOGLE_FORM_ACTION_URL_HERE', {
+        method: 'POST',
+        mode: 'no-cors', 
+        body: formData
+      });
+      
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error submitting RSVP:", error);
+      setIsSubmitting(false);
+    }
+  };
+
+  // Ambient Particle Generator
+  const Particles = () => (
+    <div className="particles-container">
+      {[...Array(15)].map((_, i) => (
+        <div key={i} className="particle" style={{
+          left: `${Math.random() * 100}vw`,
+          animationDuration: `${Math.random() * 10 + 8}s`,
+          animationDelay: `${Math.random() * 5}s`
+        }} />
+      ))}
+    </div>
+  );
+
+  return (
+    <>
+      <Particles />
+
+      {/* Interactive Cinematic Curtain Reveal */}
+      <div className={`curtain-wrapper ${curtainOpen ? 'open' : ''} ${curtainHidden ? 'hidden' : ''}`}>
+        <div className="curtain-panel left"></div>
+        <span onClick={openCurtain} className="open-invitation-text">
+          Bismillah
+        </span>
+        <div className="curtain-panel right"></div>
+      </div>
+
+      {/* 1. Landing / Hero Screen */}
+      <header className="hero" id="home">
+        <div className="hero-content fade-in">
+          <p className="bismillah delay-1">﷽</p>
+          <p className="tagline delay-1" style={{ textTransform: 'none', fontStyle: 'italic', color: 'var(--text-main)' }}>
+            "And We created you in pairs" (Quran 78:8)
+          </p>
+          
+          <p className="tagline delay-2" style={{ marginTop: '20px' }}>Together with their families</p>
+          <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
+            Mr. Sulaiman KM & Mrs. Zaurabi KA  |  [Bride's Parents' Names]
+          </p>
+          
+          {/* Stacked Bride and Groom Names */}
+          <h1 className="delay-2" style={{ lineHeight: '1.2' }}>
+            Bilal <br />
+            <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
+            Zakya Fathima
+          </h1>
+          
+          <p className="invitation-line delay-3">Joyfully invite you to witness the Nikah and celebrate their union</p>
+          
+          <p className="tagline delay-3" style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>October 25, 2026 • 11:30 AM</p>
+          <p className="tagline delay-3">The Grand Palace, New Delhi</p>
+        </div>
+        <div className="scroll-prompt fade-in delay-3">Scroll to unveil the evening</div>
+      </header>
+
+      {/* 2. Editorial Couple Showcase */}
+      <section className="section-padding" id="couple">
+        <div className="container fade-in">
+          <h2>Two Souls, One Journey</h2>
+          <p className="section-subtitle">Alhamdulillah</p>
+          
+          <div className="couple-showcase">
+            <div className="portrait-wrapper portrait-groom fade-in delay-1">
+              <img src="/api/placeholder/400/550" alt="Bilal" loading="lazy" />
+              <div className="portrait-caption">
+                Bilal
+                <div className="portrait-role">The Groom</div>
+              </div>
+            </div>
+
+            <div className="portrait-wrapper portrait-bride fade-in delay-2">
+              <img src="/api/placeholder/400/550" alt="Zakya Fathima" loading="lazy" />
+              <div className="portrait-caption">
+                Zakya Fathima
+                <div className="portrait-role">The Bride</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Countdown Section */}
+      <section className="section-padding" id="countdown">
+        <div className="container fade-in">
+          <h2>Counting Down to Our Celebration</h2>
+          <p className="section-subtitle">Every moment brings us closer, Insha'Allah</p>
+          
+          <div className="countdown-grid">
+            <div className="countdown-box"><span>{timeLeft.days}</span><label>Days</label></div>
+            <div className="countdown-box"><span>{timeLeft.hours}</span><label>Hours</label></div>
+            <div className="countdown-box"><span>{timeLeft.minutes}</span><label>Minutes</label></div>
+            <div className="countdown-box"><span>{timeLeft.seconds}</span><label>Seconds</label></div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Location & Schedule Section */}
+      <section className="section-padding events-container" id="events">
+        <div className="container fade-in">
+          <h2>The Auspicious Events</h2>
+          <p className="section-subtitle">Join us for an elegant evening of celebration as we begin this new chapter together.</p>
+          
+          <div className="event-grid">
+            <div className="event-card fade-in delay-1">
+              <span className="time-pill">Oct 24 • 7:00 PM</span>
+              <h3>Haldi & Mehendi</h3>
+              <p>The Rose Garden</p>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Join us for a vibrant evening of traditional colors, henna, and joyous celebrations.</p>
+            </div>
+            <div className="event-card fade-in delay-2">
+              <span className="time-pill">Oct 25 • 11:30 AM</span>
+              <h3>The Nikah</h3>
+              <p>The Grand Courtyard</p>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Witness the sacred exchange of vows and bless the couple as they say "Qabool Hai".</p>
+            </div>
+            <div className="event-card fade-in delay-3">
+              <span className="time-pill">Oct 25 • 7:30 PM</span>
+              <h3>The Walima</h3>
+              <p>The Crystal Ballroom</p>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>A grand evening reception and feast to celebrate the newlywed couple.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Details & Directions */}
+      <section className="section-padding container fade-in" id="venue-details">
+        <div className="details-box">
+          <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>The Grand Palace</h4>
+          <p>123 Royal Palace Road, Chanakyapuri<br />New Delhi, India 110021</p>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Complimentary valet parking is available. For out-of-town guests needing accommodations, please mention our wedding block when booking your room.</p>
+          <div style={{ marginTop: '30px', display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
+            <a href="#events" className="btn btn-outline">View Schedule</a>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. RSVP Section */}
+      <section className="section-padding rsvp-section" id="rsvp">
+        <div className="container text-center fade-in">
+          <h2>Kindly Reply</h2>
+          <p className="section-subtitle">Please respond by October 15, 2026</p>
+          
+          {!isSubmitted ? (
+            <form className="rsvp-form" onSubmit={handleRSVPSubmit}>
+              <div className="form-group fade-in delay-1">
+                <label htmlFor="name">Full Name(s)</label>
+                <input type="text" id="name" name="entry.1111111" className="form-control" required placeholder="Guest Name" />
+              </div>
+              <div className="form-group fade-in delay-2">
+                <label htmlFor="attending">Will you be attending?</label>
+                <select id="attending" name="entry.2222222" className="form-control" required defaultValue="">
+                  <option value="" disabled>Please select...</option>
+                  <option value="yes">Joyfully Accept</option>
+                  <option value="no">Regretfully Decline</option>
+                </select>
+              </div>
+              <div className="form-group fade-in delay-3">
+                <label htmlFor="guests">Number of Guests</label>
+                <input type="number" id="guests" name="entry.3333333" className="form-control" min="0" max="10" placeholder="e.g., 2" />
+              </div>
+              <div className="form-group fade-in delay-3">
+                <label htmlFor="message">Leave a message or dua for the couple (Optional)</label>
+                <input type="text" id="message" name="entry.4444444" className="form-control" placeholder="Ameen!" />
+              </div>
+              <button type="submit" disabled={isSubmitting} className="btn fade-in delay-3" style={{ marginTop: '10px' }}>
+                {isSubmitting ? 'Submitting...' : 'Confirm RSVP'}
+              </button>
+            </form>
+          ) : (
+            <div className="form-feedback fade-in" style={{ background: '#FFF', padding: '40px', borderRadius: '4px', border: '1px solid rgba(212,175,55,0.2)' }}>
+              <h3 style={{ color: 'var(--accent-color)', fontFamily: 'var(--font-heading)', fontSize: '2rem', marginBottom: '10px' }}>JazakAllah Khair</h3>
+              <p style={{ color: 'var(--text-light)', fontWeight: 300 }}>Your response has been received. We cannot wait to celebrate with you.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* 7. Closing Section */}
+      <footer className="footer fade-in">
+        <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Awaiting Your Presence</h3>
+        <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-light)' }}>
+          We look forward to celebrating this special day with you. Your presence and duas will make our celebration truly meaningful.
+        </p>
+        <p style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginTop: '40px' }}>With love & prayers,</p>
+        
+        {/* Stacked Closing Names */}
+        <h2 style={{ lineHeight: '1.2' }}>
+          Bilal <br />
+          <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
+          Zakya Fathima
+        </h2>
+      </footer>
+    </>
+  );
+};
+
+export default App;
+
