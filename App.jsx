@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const App = () => {
-  const [curtainOpen, setCurtainOpen] = useState(false);
-  const [curtainHidden, setCurtainHidden] = useState(false);
+  // Reveal state variables
+  const [revealOpen, setRevealOpen] = useState(false);
+  const [revealHidden, setRevealHidden] = useState(false);
   
   // Countdown State
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -54,10 +55,11 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Open curtain triggered by pure calligraphic text
-  const openCurtain = () => {
-    setCurtainOpen(true);
-    setTimeout(() => { setCurtainHidden(true); }, 1800);
+  // Open the floral reveal
+  const handleReveal = () => {
+    setRevealOpen(true);
+    // Hide completely after the 1.5s CSS transition finishes
+    setTimeout(() => { setRevealHidden(true); }, 1500);
   };
 
   // Google Form Submission Handler
@@ -101,13 +103,24 @@ const App = () => {
     <>
       <Particles />
 
-      {/* Interactive Cinematic Curtain Reveal */}
-      <div className={`curtain-wrapper ${curtainOpen ? 'open' : ''} ${curtainHidden ? 'hidden' : ''}`}>
-        <div className="curtain-panel left"></div>
-        <span onClick={openCurtain} className="open-invitation-text">
-          Bismillah
-        </span>
-        <div className="curtain-panel right"></div>
+      {/* Floral Center Button Reveal */}
+      <div className={`floral-reveal-overlay ${revealOpen ? 'open' : ''} ${revealHidden ? 'hidden' : ''}`}>
+        <div className="flower-container" onClick={handleReveal}>
+          
+          {/* Animated CSS Geometric Flower */}
+          <div className="css-flower">
+            <div className="flower-petal"></div>
+            <div className="flower-petal"></div>
+            <div className="flower-petal"></div>
+            <div className="flower-petal"></div>
+          </div>
+          
+          {/* Center Bismillah Button */}
+          <div className="bismillah-circle">
+            <span style={{ fontFamily: 'Arial', lineHeight: '1', marginTop: '-5px' }}>﷽</span>
+          </div>
+
+        </div>
       </div>
 
       {/* 1. Landing / Hero Screen */}
@@ -146,6 +159,7 @@ const App = () => {
           
           <div className="couple-showcase">
             <div className="portrait-wrapper portrait-groom fade-in delay-1">
+              {/* Updated Groom's Image Path */}
               <img src="/Groom.jpg" alt="Bilal" loading="lazy" />
               <div className="portrait-caption">
                 Bilal
@@ -154,6 +168,7 @@ const App = () => {
             </div>
 
             <div className="portrait-wrapper portrait-bride fade-in delay-2">
+              {/* Updated Bride's Image Path */}
               <img src="/Bride.jpg" alt="Zakya Fathima" loading="lazy" />
               <div className="portrait-caption">
                 Zakya Fathima
@@ -270,7 +285,6 @@ const App = () => {
         </p>
         <p style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginTop: '40px' }}>With love & prayers,</p>
         
-        {/* Stacked Closing Names */}
         <h2 style={{ lineHeight: '1.2' }}>
           Bilal <br />
           <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
@@ -282,4 +296,4 @@ const App = () => {
 };
 
 export default App;
-
+                                             
