@@ -353,6 +353,45 @@ p { margin-bottom: 1rem; font-weight: 300; }
 .form-control:focus { outline: none; border-color: var(--accent-color); }
 
 /* Footer */
-.footer { padding: 80px 20px; text-align: center; background-color: var(--bg-color); border-top: 1px solid rgba(212,175,55,0.2); }
-.footer h2 { font-size: 3rem; margin-top: 15px; color: var(--accent-color); }
+/* App.css */
+
+.footer { 
+    padding: 80px 20px; 
+    text-align: center; 
+    background-color: var(--bg-color); 
+    border-top: 1px solid rgba(212,175,55,0.2);
+    position: relative; /* Required for the absolute pseudo-element */
+    overflow: hidden; 
+}
+
+/* Pseudo-element for the background image */
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/footer-bg.jpg'); /* Replace with your footer image path */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25; /* Set to 25% opacity as requested */
+    z-index: 1; /* Sits behind the text */
+}
+
+/* Ensure footer text stays on top of the image */
+.footer h3, 
+.footer p, 
+.footer h2 { 
+    position: relative;
+    z-index: 2; 
+}
+
+.footer h2 { 
+    font-size: 3rem; 
+    margin-top: 15px; 
+    color: var(--accent-color); 
+    line-height: 1.2;
+}
+
 
