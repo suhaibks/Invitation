@@ -146,7 +146,7 @@ const App = () => {
           
           <div className="couple-showcase">
             <div className="portrait-wrapper portrait-groom fade-in delay-1">
-              <img src="Groom.jpg" alt="Bilal" loading="lazy" />
+              <img src="/Groom.jpg" alt="Bilal" loading="lazy" />
               <div className="portrait-caption">
                 Bilal
                 <div className="portrait-role">The Groom</div>
