@@ -186,7 +186,7 @@ const App = () => {
         <div className="details-box">
           <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>Anvaya The Marquee</h4>
           <p>Madikeri Road, Guddehosuru<br />Kushalnagar - 571234, Karnataka</p>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Join us as we celebrate in a setting of elegance and warmth.<br/> We look forward to sharing this special day with you.</p>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Join us as we celebrate in a setting of elegance and warmth. We look forward to sharing this special day with you.</p>
           <div style={{ marginTop: '30px', display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
             {/* Auto-searching Google Maps Link */}
             <a href="https://www.google.com/maps/search/?api=1&query=Anvaya+The+Marquee,+Madikeri+Road,+Kushalnagar" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
