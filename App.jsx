@@ -107,7 +107,7 @@ const App = () => {
           
           <p className="invitation-line delay-3">Joyfully invite you to witness the Nikah and celebrate their union</p>
           <p className="tagline delay-3" style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>October 25, 2026 • 11:30 AM</p>
-          <p className="tagline delay-3">Anvaya The Marquee, Kushalnagar</p>
+          <p className="tagline delay-3">The Grand Palace, New Delhi</p>
         </div>
       </header>
 
@@ -162,19 +162,19 @@ const App = () => {
             <div className="event-card fade-in delay-1">
               <span className="time-pill">Oct 24 • 7:00 PM</span>
               <h3>Haldi & Mehendi</h3>
-              <p>The Sweet Home</p>
+              <p>The Rose Garden</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Join us for a vibrant evening of traditional colors, henna, and joyous celebrations.</p>
             </div>
             <div className="event-card fade-in delay-2">
               <span className="time-pill">Oct 25 • 11:30 AM</span>
               <h3>The Nikah</h3>
-              <p>Anvaya The Marquee</p>
+              <p>The Grand Courtyard</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Witness the sacred exchange of vows and bless the couple as they say "Qabool Hai".</p>
             </div>
             <div className="event-card fade-in delay-3">
               <span className="time-pill">Oct 25 • 7:30 PM</span>
               <h3>The Walima</h3>
-              <p>Anvaya The Marquee</p>
+              <p>The Crystal Ballroom</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>A grand evening reception and feast to celebrate the newlywed couple.</p>
             </div>
           </div>
@@ -184,9 +184,9 @@ const App = () => {
       {/* 5. Details & Directions */}
       <section className="section-padding container fade-in" id="venue-details">
         <div className="details-box">
-          <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>Anvaya The Marquee</h4>
+          <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>The Grand Palace</h4>
           <p>123 Royal Palace Road, Chanakyapuri<br />New Delhi, India 110021</p>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Join us at The Grand Palace as we celebrate this special occasion in a setting of elegance and grandeur.<br /Your presence will make the day even more meaningful.</p>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Complimentary valet parking is available. For out-of-town guests needing accommodations, please mention our wedding block when booking your room.</p>
           <div style={{ marginTop: '30px', display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
             <a href="#events" className="btn btn-outline">View Schedule</a>
@@ -199,7 +199,7 @@ const App = () => {
           <h2>Kindly Reply</h2>
           <p className="section-subtitle">Please respond by October 15, 2026</p>
           {/* Replace this URL with your actual Google Form link */}
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEV2Y_AYPQgkVze-CJvElCjKAJqzkzrh0HZLirqV0-UMUfuw/viewform?usp=sharing&ouid=117723795440602603986" target="_blank" rel="noreferrer" className="btn">RSVP via Google Forms</a>
+          <a href="YOUR_GOOGLE_FORM_URL" target="_blank" rel="noreferrer" className="btn">RSVP via Google Forms</a>
       </section>
 
       {/* 7. Closing Section */}
