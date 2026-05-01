@@ -72,7 +72,7 @@ const App = () => {
     
     try {
       // NOTE: Replace with your actual Google Form POST action URL.
-      await fetch('YOUR_GOOGLE_FORM_ACTION_URL_HERE', {
+      await fetch('https://docs.google.com/forms/d/e/1SPXiZ51Ir2cyQQyrHTN6DPki27CYR7WtOhy2Zrl5Ozg/formResponse', {
         method: 'POST',
         mode: 'no-cors', 
         body: formData
@@ -246,11 +246,11 @@ const App = () => {
             <form className="rsvp-form" onSubmit={handleRSVPSubmit}>
               <div className="form-group fade-in delay-1">
                 <label htmlFor="name">Full Name(s)</label>
-                <input type="text" id="name" name="entry.1111111" className="form-control" required placeholder="Guest Name" />
+                <input type="text" id="name" name="entry.1309828278" className="form-control" required placeholder="Guest Name" />
               </div>
               <div className="form-group fade-in delay-2">
                 <label htmlFor="attending">Will you be attending?</label>
-                <select id="attending" name="entry.2222222" className="form-control" required defaultValue="">
+                <select id="attending" name="entry.2071771470" className="form-control" required defaultValue="">
                   <option value="" disabled>Please select...</option>
                   <option value="yes">Joyfully Accept</option>
                   <option value="no">Regretfully Decline</option>
@@ -258,11 +258,11 @@ const App = () => {
               </div>
               <div className="form-group fade-in delay-3">
                 <label htmlFor="guests">Number of Guests</label>
-                <input type="number" id="guests" name="entry.3333333" className="form-control" min="0" max="10" placeholder="e.g., 2" />
+                <input type="number" id="guests" name="entry.1990319534" className="form-control" min="0" max="10" placeholder="e.g., 2" />
               </div>
               <div className="form-group fade-in delay-3">
                 <label htmlFor="message">Leave a message or dua for the couple (Optional)</label>
-                <input type="text" id="message" name="entry.4444444" className="form-control" placeholder="Ameen!" />
+                <input type="text" id="message" name="entry.975295507" className="form-control" placeholder="Ameen!" />
               </div>
               <button type="submit" disabled={isSubmitting} className="btn fade-in delay-3" style={{ marginTop: '10px' }}>
                 {isSubmitting ? 'Submitting...' : 'Confirm RSVP'}
