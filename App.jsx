@@ -2,16 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const App = () => {
-  // Reveal state variables
   const [revealOpen, setRevealOpen] = useState(false);
   const [revealHidden, setRevealHidden] = useState(false);
-  
-  // Countdown State
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-  // Form state
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -58,37 +51,8 @@ const App = () => {
   // Open the floral reveal
   const handleReveal = () => {
     setRevealOpen(true);
-    // Hide completely after the 1.5s CSS transition finishes
     setTimeout(() => { setRevealHidden(true); }, 1500);
   };
-
-  // Google Form Submission Handler
-  const handleRSVP = async (e) => {
-  e.preventDefault();
-  
-  // The correct Action URL ending in /formResponse
-  const formUrl = "https://docs.google.com/forms/d/e/1SPXiZ51Ir2cyQQyrHTN6DPki27CYR7WtOhy2Zrl5Ozg/formResponse";
-  
-  const formData = new FormData();
-  
-  // Mapping your newly found IDs to the form data
-  formData.append("entry.1309828278", name);       // Guest Name
-  formData.append("entry.2071771470", attendance); // Attendance Confirmation
-  formData.append("entry.1990319534", count);      // Number of Attendees
-  formData.append("entry.975295507", message);      // Message
-
-  try {
-    await fetch(formUrl, {
-      method: "POST",
-      mode: "no-cors", // Required to prevent CORS errors
-      body: formData
-    });
-    setSubmitted(true); // Triggers the "Thank You" message
-  } catch (error) {
-    console.error("RSVP Submission Error:", error);
-  }
-};
-
 
   // Ambient Particle Generator
   const Particles = () => (
@@ -110,20 +74,15 @@ const App = () => {
       {/* Floral Center Button Reveal */}
       <div className={`floral-reveal-overlay ${revealOpen ? 'open' : ''} ${revealHidden ? 'hidden' : ''}`}>
         <div className="flower-container" onClick={handleReveal}>
-          
-          {/* Animated CSS Geometric Flower */}
           <div className="css-flower">
             <div className="flower-petal"></div>
             <div className="flower-petal"></div>
             <div className="flower-petal"></div>
             <div className="flower-petal"></div>
           </div>
-          
-          {/* Center Bismillah Button */}
           <div className="bismillah-circle">
             <span style={{ fontFamily: 'Arial', lineHeight: '1', marginTop: '-5px' }}>﷽</span>
           </div>
-
         </div>
       </div>
 
@@ -140,7 +99,6 @@ const App = () => {
             Mr. Sulaiman KM & Mrs. Zaurabi KA  |  [Bride's Parents' Names]
           </p>
           
-          {/* Stacked Bride and Groom Names */}
           <h1 className="delay-2" style={{ lineHeight: '1.2' }}>
             Bilal <br />
             <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
@@ -148,11 +106,9 @@ const App = () => {
           </h1>
           
           <p className="invitation-line delay-3">Joyfully invite you to witness the Nikah and celebrate their union</p>
-          
           <p className="tagline delay-3" style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>October 25, 2026 • 11:30 AM</p>
-          <p className="tagline delay-3">Anvaya The Marquee, Kushalnagar</p>
+          <p className="tagline delay-3">The Grand Palace, New Delhi</p>
         </div>
-        <div className="scroll-prompt fade-in delay-3">Scroll to unveil the evening</div>
       </header>
 
       {/* 2. Editorial Couple Showcase */}
@@ -163,7 +119,6 @@ const App = () => {
           
           <div className="couple-showcase">
             <div className="portrait-wrapper portrait-groom fade-in delay-1">
-              {/* Updated Groom's Image Path */}
               <img src="/Groom.jpg" alt="Bilal" loading="lazy" />
               <div className="portrait-caption">
                 Bilal
@@ -172,7 +127,6 @@ const App = () => {
             </div>
 
             <div className="portrait-wrapper portrait-bride fade-in delay-2">
-              {/* Updated Bride's Image Path */}
               <img src="/Bride.jpg" alt="Zakya Fathima" loading="lazy" />
               <div className="portrait-caption">
                 Zakya Fathima
@@ -186,7 +140,7 @@ const App = () => {
       {/* 3. Countdown Section */}
       <section className="section-padding" id="countdown">
         <div className="container fade-in">
-          <h2>Counting Down to Our Celebration</h2>
+          <h2>Countdown to Nikah</h2>
           <p className="section-subtitle">Every moment brings us closer, Insha'Allah</p>
           
           <div className="countdown-grid">
@@ -208,19 +162,19 @@ const App = () => {
             <div className="event-card fade-in delay-1">
               <span className="time-pill">Oct 24 • 7:00 PM</span>
               <h3>Haldi & Mehendi</h3>
-              <p>The Sweet Home</p>
+              <p>The Rose Garden</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Join us for a vibrant evening of traditional colors, henna, and joyous celebrations.</p>
             </div>
             <div className="event-card fade-in delay-2">
               <span className="time-pill">Oct 25 • 11:30 AM</span>
               <h3>The Nikah</h3>
-              <p>Anvaya The Marquee</p>
+              <p>The Grand Courtyard</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Witness the sacred exchange of vows and bless the couple as they say "Qabool Hai".</p>
             </div>
             <div className="event-card fade-in delay-3">
               <span className="time-pill">Oct 25 • 7:30 PM</span>
               <h3>The Walima</h3>
-              <p>Anvaya The Marquee</p>
+              <p>The Crystal Ballroom</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>A grand evening reception and feast to celebrate the newlywed couple.</p>
             </div>
           </div>
@@ -230,75 +184,40 @@ const App = () => {
       {/* 5. Details & Directions */}
       <section className="section-padding container fade-in" id="venue-details">
         <div className="details-box">
-          <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>Anvaya The Marquee</h4>
+          <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>The Grand Palace</h4>
           <p>123 Royal Palace Road, Chanakyapuri<br />New Delhi, India 110021</p>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Complimentary valet parking is available. For out-of-town guests needing accommodations, please mention our wedding block when booking your room.</p>
           <div style={{ marginTop: '30px', display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="https://maps.app.goo.gl/u7sdhgr74xGHGy1DA" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
+            <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
             <a href="#events" className="btn btn-outline">View Schedule</a>
           </div>
         </div>
       </section>
 
-      {/* 6. RSVP Section */}
-      <section className="section-padding rsvp-section" id="rsvp">
-        <div className="container text-center fade-in">
+      {/* 6. RSVP Button Section */}
+      <section className="rsvp-btn-container fade-in" id="rsvp">
           <h2>Kindly Reply</h2>
           <p className="section-subtitle">Please respond by October 15, 2026</p>
-          
-          {!isSubmitted ? (
-            <form className="rsvp-form" onSubmit={handleRSVPSubmit}>
-              <div className="form-group fade-in delay-1">
-                <label htmlFor="name">Full Name(s)</label>
-                <input type="text" id="name" name="entry.1309828278" className="form-control" required placeholder="Guest Name" />
-              </div>
-              <div className="form-group fade-in delay-2">
-                <label htmlFor="attending">Will you be attending?</label>
-                <select id="attending" name="entry.2071771470" className="form-control" required defaultValue="">
-                  <option value="" disabled>Please select...</option>
-                  <option value="yes">Joyfully Accept</option>
-                  <option value="no">Regretfully Decline</option>
-                </select>
-              </div>
-              <div className="form-group fade-in delay-3">
-                <label htmlFor="guests">Number of Guests</label>
-                <input type="number" id="guests" name="entry.1990319534" className="form-control" min="0" max="10" placeholder="e.g., 2" />
-              </div>
-              <div className="form-group fade-in delay-3">
-                <label htmlFor="message">Leave a message or dua for the couple (Optional)</label>
-                <input type="text" id="message" name="entry.975295507" className="form-control" placeholder="Ameen!" />
-              </div>
-              <button type="submit" disabled={isSubmitting} className="btn fade-in delay-3" style={{ marginTop: '10px' }}>
-                {isSubmitting ? 'Submitting...' : 'Confirm RSVP'}
-              </button>
-            </form>
-          ) : (
-            <div className="form-feedback fade-in" style={{ background: '#FFF', padding: '40px', borderRadius: '4px', border: '1px solid rgba(212,175,55,0.2)' }}>
-              <h3 style={{ color: 'var(--accent-color)', fontFamily: 'var(--font-heading)', fontSize: '2rem', marginBottom: '10px' }}>JazakAllah Khair</h3>
-              <p style={{ color: 'var(--text-light)', fontWeight: 300 }}>Your response has been received. We cannot wait to celebrate with you.</p>
-            </div>
-          )}
-        </div>
+          {/* Replace this URL with your actual Google Form link */}
+          <a href="YOUR_GOOGLE_FORM_URL" target="_blank" rel="noreferrer" className="btn">RSVP via Google Forms</a>
       </section>
 
-{/* 7. Closing Section */}
-<footer className="footer fade-in">
-  <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Awaiting Your Presence</h3>
-  <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-light)' }}>
-    We look forward to celebrating this special day with you. Your presence and duas will make our celebration truly meaningful.
-  </p>
-  <p style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginTop: '40px' }}>With love & prayers,</p>
-  
-  <h2 className="footer-names">
-    Bilal <br />
-    <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
-    Zakya Fathima
-  </h2>
-</footer>
-
+      {/* 7. Closing Section */}
+      <footer className="footer fade-in">
+        <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Awaiting Your Presence</h3>
+        <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-light)' }}>
+          We look forward to celebrating this special day with you. Your presence and duas will make our celebration truly meaningful.
+        </p>
+        <p style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginTop: '40px' }}>With love & prayers,</p>
+        
+        <h2 style={{ lineHeight: '1.2' }}>
+          Bilal <br />
+          <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
+          Zakya Fathima
+        </h2>
+      </footer>
     </>
   );
 };
 
 export default App;
-                                             
