@@ -107,7 +107,7 @@ const App = () => {
           
           <p className="invitation-line delay-3">Joyfully invite you to witness the Nikah and celebrate their union</p>
           <p className="tagline delay-3" style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>October 25, 2026 • 11:30 AM</p>
-          <p className="tagline delay-3">The Grand Palace, New Delhi</p>
+          <p className="tagline delay-3">Anvaya The Marquee, Kushalnagar</p>
         </div>
       </header>
 
@@ -162,19 +162,19 @@ const App = () => {
             <div className="event-card fade-in delay-1">
               <span className="time-pill">Oct 24 • 7:00 PM</span>
               <h3>Haldi & Mehendi</h3>
-              <p>The Rose Garden</p>
+              <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>The Sweet Home</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Join us for a vibrant evening of traditional colors, henna, and joyous celebrations.</p>
             </div>
             <div className="event-card fade-in delay-2">
               <span className="time-pill">Oct 25 • 11:30 AM</span>
               <h3>The Nikah</h3>
-              <p>The Grand Courtyard</p>
+              <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Anvaya The Marquee</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Witness the sacred exchange of vows and bless the couple as they say "Qabool Hai".</p>
             </div>
             <div className="event-card fade-in delay-3">
               <span className="time-pill">Oct 25 • 7:30 PM</span>
               <h3>The Walima</h3>
-              <p>The Crystal Ballroom</p>
+              <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Anvaya The Marquee</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>A grand evening reception and feast to celebrate the newlywed couple.</p>
             </div>
           </div>
@@ -184,11 +184,12 @@ const App = () => {
       {/* 5. Details & Directions */}
       <section className="section-padding container fade-in" id="venue-details">
         <div className="details-box">
-          <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>The Grand Palace</h4>
-          <p>123 Royal Palace Road, Chanakyapuri<br />New Delhi, India 110021</p>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Complimentary valet parking is available. For out-of-town guests needing accommodations, please mention our wedding block when booking your room.</p>
+          <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>Anvaya The Marquee</h4>
+          <p>Madikeri Road, Guddehosuru<br />Kushalnagar - 571234, Karnataka</p>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Join us as we celebrate in a setting of elegance and warmth.<br/> We look forward to sharing this special day with you.</p>
           <div style={{ marginTop: '30px', display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
+            {/* Auto-searching Google Maps Link */}
+            <a href="https://www.google.com/maps/search/?api=1&query=Anvaya+The+Marquee,+Madikeri+Road,+Kushalnagar" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
             <a href="#events" className="btn btn-outline">View Schedule</a>
           </div>
         </div>
@@ -198,26 +199,29 @@ const App = () => {
       <section className="rsvp-btn-container fade-in" id="rsvp">
           <h2>Kindly Reply</h2>
           <p className="section-subtitle">Please respond by October 15, 2026</p>
-          {/* Replace this URL with your actual Google Form link */}
-          <a href="YOUR_GOOGLE_FORM_URL" target="_blank" rel="noreferrer" className="btn">RSVP via Google Forms</a>
+          {/* Your direct Google Form link */}
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEV2Y_AYPQgkVze-CJvElCjKAJqzkzrh0HZLirqV0-UMUfuw/viewform?usp=sharing&ouid=117723795440602603986" target="_blank" rel="noreferrer" className="btn">RSVP via Google Forms</a>
       </section>
 
       {/* 7. Closing Section */}
       <footer className="footer fade-in">
-        <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Awaiting Your Presence</h3>
-        <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-light)' }}>
-          We look forward to celebrating this special day with you. Your presence and duas will make our celebration truly meaningful.
-        </p>
-        <p style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginTop: '40px' }}>With love & prayers,</p>
-        
-        <h2 style={{ lineHeight: '1.2' }}>
-          Bilal <br />
-          <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
-          Zakya Fathima
-        </h2>
+        <div className="footer-content">
+          <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Awaiting Your Presence</h3>
+          <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-light)' }}>
+            We look forward to celebrating this special day with you. Your presence and duas will make our celebration truly meaningful.
+          </p>
+          <p style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginTop: '40px' }}>With love & prayers,</p>
+          
+          <h2 style={{ lineHeight: '1.2' }}>
+            Bilal <br />
+            <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
+            Zakya Fathima
+          </h2>
+        </div>
       </footer>
     </>
   );
 };
 
 export default App;
+      
