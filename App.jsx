@@ -63,28 +63,32 @@ const App = () => {
   };
 
   // Google Form Submission Handler
-  const handleRSVPSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    const form = e.target;
-    const formData = new FormData(form);
-    
-    try {
-      // NOTE: Replace with your actual Google Form POST action URL.
-      await fetch('https://docs.google.com/forms/d/e/1SPXiZ51Ir2cyQQyrHTN6DPki27CYR7WtOhy2Zrl5Ozg/formResponse', {
-        method: 'POST',
-        mode: 'no-cors', 
-        body: formData
-      });
-      
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    } catch (error) {
-      console.error("Error submitting RSVP:", error);
-      setIsSubmitting(false);
-    }
-  };
+  const handleRSVP = async (e) => {
+  e.preventDefault();
+  
+  // The correct Action URL ending in /formResponse
+  const formUrl = "https://docs.google.com/forms/d/e/1SPXiZ51Ir2cyQQyrHTN6DPki27CYR7WtOhy2Zrl5Ozg/formResponse";
+  
+  const formData = new FormData();
+  
+  // Mapping your newly found IDs to the form data
+  formData.append("entry.1309828278", name);       // Guest Name
+  formData.append("entry.2071771470", attendance); // Attendance Confirmation
+  formData.append("entry.1990319534", count);      // Number of Attendees
+  formData.append("entry.975295507", message);      // Message
+
+  try {
+    await fetch(formUrl, {
+      method: "POST",
+      mode: "no-cors", // Required to prevent CORS errors
+      body: formData
+    });
+    setSubmitted(true); // Triggers the "Thank You" message
+  } catch (error) {
+    console.error("RSVP Submission Error:", error);
+  }
+};
+
 
   // Ambient Particle Generator
   const Particles = () => (
