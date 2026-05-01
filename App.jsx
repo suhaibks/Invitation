@@ -185,7 +185,7 @@ const App = () => {
       <section className="section-padding container fade-in" id="venue-details">
         <div className="details-box">
           <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>Anvaya The Marquee</h4>
-          <p>Madikeri Road, Guddehosuru<br />Kushalnagar - 571234, Karnataka</p>
+          <p>Madikeri Road, Guddehosuru<br />Kushalnagar-571234, Karnataka</p>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Join us at The Grand Palace as we celebrate this special occasion in a setting of elegance and grandeur.<br /Your presence will make the day even more meaningful.</p>
           <div style={{ marginTop: '30px', display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
