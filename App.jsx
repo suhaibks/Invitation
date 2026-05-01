@@ -199,7 +199,7 @@ const App = () => {
           <h2>Kindly Reply</h2>
           <p className="section-subtitle">Please respond by October 15, 2026</p>
           {/* Replace this URL with your actual Google Form link */}
-          <a href="YOUR_GOOGLE_FORM_URL" target="_blank" rel="noreferrer" className="btn">RSVP via Google Forms</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEV2Y_AYPQgkVze-CJvElCjKAJqzkzrh0HZLirqV0-UMUfuw/viewform?usp=sharing&ouid=117723795440602603986" target="_blank" rel="noreferrer" className="btn">RSVP via Google Forms</a>
       </section>
 
       {/* 7. Closing Section */}
