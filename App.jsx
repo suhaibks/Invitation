@@ -96,7 +96,7 @@ const App = () => {
           
           <p className="tagline delay-2" style={{ marginTop: '20px' }}>Together with their families</p>
           <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
-            Mr. Sulaiman KM & Mrs. Zaurabi KA  |  [Bride's Parents' Names]
+            Mr. Sulaiman KM & Mrs. Zaurabi KA  |  Iqbal Hussain & Rahamath Nisa
           </p>
           
           <h1 className="delay-2" style={{ lineHeight: '1.2' }}>
