@@ -96,7 +96,7 @@ const App = () => {
           
           <p className="tagline delay-2" style={{ marginTop: '20px' }}>Together with their families</p>
           <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
-            Mr. Sulaiman KM & Mrs. Zaurabi KA  |  Mr. Iqbal Hussain & Mrs. Rahamath Nisa
+            Mr. Sulaiman KM & Mrs. Zaurabi KA
           </p>
           
           <h1 className="delay-2" style={{ lineHeight: '1.2' }}>
@@ -104,6 +104,10 @@ const App = () => {
             <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
             Zakya Fathima
           </h1>
+
+          <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
+            Mr. Iqbal Hussain & Mrs. Rahamath
+          </p>
           
           <p className="invitation-line delay-3">Joyfully invite you to witness the Nikah and celebrate their union</p>
           <p className="tagline delay-3" style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>October 25, 2026 • 11:30 AM</p>
