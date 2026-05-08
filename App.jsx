@@ -173,7 +173,7 @@ const App = () => {
               <span className="time-pill">Oct 25 • 11:30 AM</span>
               <h3>The Nikah</h3>
               <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Anvaya The Marquee</p>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Witness the sacred exchange of vows and bless the couple as they say "Qabool Hai".</p>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Witness the sacred exchange of vows and bless the couple as they say "Qubool Hai".</p>
             </div>
             <div className="event-card fade-in delay-3">
               <span className="time-pill">Oct 25 • 7:30 PM</span>
