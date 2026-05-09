@@ -103,7 +103,7 @@ const App = () => {
           <h1 className="delay-2" style={{ lineHeight: '1.2' }}>
             Bilal <br />
             <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
-            Fathima Zakya
+            Fathima Zakiya
           </h1>
 
           <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
@@ -134,7 +134,7 @@ const App = () => {
             <div className="portrait-wrapper portrait-bride fade-in delay-2">
               <img src="/Bride.jpg" alt="Zakya Fathima" loading="lazy" />
               <div className="portrait-caption">
-                Fathima Zakya
+                Fathima Zakiya
                 <div className="portrait-role">The Bride</div>
               </div>
             </div>
@@ -214,7 +214,7 @@ const App = () => {
           <h2 style={{ lineHeight: '1.2' }}>
             Bilal <br />
             <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
-            Fathima Zakya
+            Fathima Zakiya
           </h2>
         </div>
       </footer>
