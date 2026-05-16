@@ -176,6 +176,35 @@ const App = () => {
               <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Anvaya The Marquee</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Witness the sacred exchange of vows and bless the couple as they say "Qubool Hai".</p>
             </div>
+            
+            <div className="event-card fade-in delay-1">
+              <span className="time-pill">Play Now</span>
+              <h3>Wedding Games</h3>
+              <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Online Competition</p>
+              
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>
+                Participate in our special cousins and guests games for a chance to win exciting prizes!
+                <br /><br />
+                <span style={{ color: 'var(--text-main)', fontWeight: 'bold' }}>Note:</span> A unique code is required to enter the game. If you are interested in playing. Please ask for the code via whatsapp.
+              </p>
+
+              {/* Buttons Container */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '25px' }}>
+                
+                {/* Play Button */}
+                <a href="https://bilal-zakiya-nikah-2026.web.app/?open=1" target="_blank" rel="noreferrer" className="btn" style={{ padding: '12px 20px', fontSize: '0.8rem', width: '100%' }}>
+                  Start Playing
+                </a>
+
+                {/* WhatsApp Button */}
+                {/* Make sure to replace YOUR_PHONE_NUMBER with your actual number including the country code, e.g., 919876543210 */}
+                <a href="https://wa.me/YOUR_PHONE_NUMBER?text=Hi!%20Could%20I%20please%20get%20my%20unique%20code%20for%20the%20wedding%20games?" target="_blank" rel="noreferrer" className="btn btn-outline" style={{ padding: '12px 20px', fontSize: '0.8rem', width: '100%' }}>
+                  Ask for Code via WhatsApp
+                </a>
+                
+              </div>
+            </div>
+            
           </div>
         </div>
       </section>
