@@ -126,9 +126,51 @@ p { margin-bottom: 1rem; font-weight: 300; }
 /* Venue & Details */
 .details-box { border: 1px solid rgba(212, 175, 55, 0.4); padding: 40px; text-align: center; margin: 40px auto 0; max-width: 600px; background: #FFF; border-radius: 4px; }
 
+/* --- Interactive Wishes Board Layout --- */
+.wishes-section { background-color: var(--muted-bg); border-top: 1px solid rgba(212, 175, 55, 0.1); }
+.wishes-layout { display: flex; gap: 40px; margin-top: 20px; flex-direction: column; text-align: left; }
+@media (min-width: 768px) { .wishes-layout { flex-direction: row; } }
+
+/* Form Design Box */
+.wish-form-card {
+    flex: 1; background: #FFF; border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 35px 30px; border-radius: 4px; height: fit-content;
+    box-shadow: 0 10px 30px rgba(15, 76, 58, 0.03);
+}
+.wish-form-card h3 { font-size: 1.6rem; margin-bottom: 20px; color: var(--text-main); font-weight: 300; }
+.wish-input-group { margin-bottom: 20px; }
+.wish-input-group input, 
+.wish-input-group textarea {
+    width: 100%; padding: 14px 16px; background-color: var(--bg-color);
+    border: 1px solid rgba(90, 112, 99, 0.3); color: var(--text-main);
+    border-radius: 4px; font-size: 0.95rem; font-family: var(--font-body);
+    outline: none; transition: border-color var(--trans-fast) ease;
+}
+.wish-input-group input:focus, 
+.wish-input-group textarea:focus { border-color: var(--accent-color); }
+
+/* Scrolling Feed Wall Design */
+.wishes-wall {
+    flex: 1.2; max-height: 380px; overflow-y: auto; padding-right: 15px;
+    display: flex; flex-direction: column; gap: 18px;
+}
+.wishes-wall::-webkit-scrollbar { width: 5px; }
+.wishes-wall::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
+
+.wish-board-card {
+    background: #FFF; border-left: 3px solid var(--accent-color);
+    padding: 22px 25px; border-radius: 0 4px 4px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    animation: wishFadeIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+.wish-board-message { color: var(--text-light); font-size: 0.95rem; line-height: 1.6; font-style: italic; margin-bottom: 10px; }
+.wish-board-name { color: var(--text-main); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+@keyframes wishFadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
 /* RSVP Button Section */
 .rsvp-btn-container { text-align: center; padding: 80px 20px; background-color: var(--bg-color); }
-.btn { display: inline-block; padding: 16px 44px; background-color: var(--accent-color); color: #FFF; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 2px; transition: all var(--trans-fast) ease; }
+.btn { display: inline-block; padding: 16px 44px; background-color: var(--accent-color); color: #FFF; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 2px; transition: all var(--trans-fast) ease; cursor: pointer; border: none; text-align: center; font-family: var(--font-body); }
 .btn:hover { background-color: var(--text-main); transform: translateY(-2px); }
 .btn-outline { background-color: transparent; color: var(--text-main); border: 1px solid var(--text-main); }
 .btn-outline:hover { background-color: var(--text-main); color: var(--bg-color); }
@@ -142,4 +184,4 @@ p { margin-bottom: 1rem; font-weight: 300; }
 }
 .footer h3, .footer p, .footer h2 { position: relative; z-index: 2; }
 .footer h2 { font-size: 3rem; margin-top: 15px; color: var(--accent-color); line-height: 1.2; }
-         
+                
