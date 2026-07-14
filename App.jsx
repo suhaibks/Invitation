@@ -7,22 +7,36 @@ const App = () => {
   const [revealHidden, setRevealHidden] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   
-  // Wishes & Blessings Live Feed State Logic (Set to 0 messages initially)
-  const [wishes, setWishes] = useState([]);
-  const [guestName, setGuestName] = useState("");
-  const [guestMessage, setGuestMessage] = useState("");
+  // Custom Family Wishes Data Array (Without Relation Tags)
+  const familyWishes = [
+    {
+      name: "Suhaib",
+      message: "Wishing you both a lifetime of love, joy, and beautiful memories. Congratulations!"
+    },
+    {
+      name: "Habeeba",
+      message: "May Allah bless your marriage with endless love, happiness, and barakah. Congratulations!"
+    },
+    {
+      name: "Shamir",
+      message: "May your journey together be filled with peace, laughter, and countless blessings. Congratulations!"
+    },
+    {
+      name: "Nuh",
+      message: "❤️"
+    }
+  ];
 
-  const handleWishSubmission = (e) => {
-    e.preventDefault();
-    if (!guestName.trim() || !guestMessage.trim()) return;
+  // Carousel State
+  const [currentWish, setCurrentWish] = useState(0);
 
-    // Append the new wish to the top of the live feed array
-    setWishes([{ name: guestName, message: guestMessage }, ...wishes]);
-    
-    // Clear the input fields safely
-    setGuestName("");
-    setGuestMessage("");
-  };
+  // Auto-slide effect every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentWish((prev) => (prev + 1) % familyWishes.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [familyWishes.length]);
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -42,7 +56,7 @@ const App = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Countdown Timer Logic - Set to Nikah Time: Oct 25, 2026 at 11:30 AM
+  // Countdown Timer Logic - Nikah Time: Oct 25, 2026 at 11:30 AM
   useEffect(() => {
     const targetDate = new Date("Oct 25, 2026 11:30:00").getTime();
     
@@ -124,10 +138,10 @@ const App = () => {
           </h1>
 
           <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
-            [Bride's Parents' Names]
+            Mr. Iqbal Hussain & Mrs. Rahamath
           </p>
           
-          <p className="invitation-line delay-3">Request the pleasure of your presence at their wedding celebration</p>
+          <p className="invitation-line delay-3">Joyfully invite you to witness the Nikah and celebrate their union</p>
           <p className="tagline delay-3" style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>October 25, 2026 • 11:30 AM</p>
           <p className="tagline delay-3">Anvaya The Marquee, Kushalnagar</p>
         </div>
@@ -162,7 +176,7 @@ const App = () => {
       {/* 3. Countdown Section */}
       <section className="section-padding" id="countdown">
         <div className="container fade-in">
-          <h2>Counting Down to Our Celebration</h2>
+          <h2>Countdown to Nikah</h2>
           <p className="section-subtitle">Every moment brings us closer, Insha'Allah</p>
           
           <div className="countdown-grid">
@@ -218,53 +232,32 @@ const App = () => {
         </div>
       </section>
 
-      {/* 5. Interactive Wishes & Blessings Board */}
-      <section className="wishes-section section-padding fade-in" id="wishes">
+      {/* 5. Static Family Wishes Slideshow Section */}
+      <section className="wishes-slideshow-section section-padding fade-in" id="wishes">
         <div className="container">
-          <h2>Wishes & Blessings</h2>
-          <p className="section-subtitle">Leave a beautiful message for the couple</p>
-          
-          <div className="wishes-layout">
-            {/* Input Form Box */}
-            <form onSubmit={handleWishSubmission} className="wish-form-card">
-              <h3>Share Your Blessings</h3>
-              <div className="wish-input-group">
-                <input 
-                  type="text" 
-                  placeholder="Your Name" 
-                  value={guestName}
-                  onChange={(e) => setGuestName(e.target.value)}
-                  required 
-                />
-              </div>
-              <div className="wish-input-group">
-                <textarea 
-                  placeholder="Write your beautiful prayers or congratulations here..." 
-                  rows="4"
-                  value={guestMessage}
-                  onChange={(e) => setGuestMessage(e.target.value)}
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" className="btn" style={{ width: '100%', minHeight: '44px' }}>
-                Post Blessing
-              </button>
-            </form>
+          <h2>Family Blessings</h2>
+          <div className="cinematic-line"></div>
+          <p className="section-subtitle">Duas & warm wishes for the couple</p>
 
-            {/* Scrolling Live Feed Wall */}
-            <div className="wishes-wall">
-              {wishes.length === 0 ? (
-                <div className="wish-board-card" style={{ borderLeftColor: 'rgba(90, 112, 99, 0.3)', textAlign: 'center' }}>
-                  <p className="wish-board-message" style={{ margin: 0 }}>No messages yet. Be the first to leave a blessing!</p>
-                </div>
-              ) : (
-                wishes.map((wish, index) => (
-                  <div className="wish-board-card" key={index}>
-                    <p className="wish-board-message">"{wish.message}"</p>
-                    <h4 className="wish-board-name">- {wish.name}</h4>
-                  </div>
-                ))
-              )}
+          <div className="carousel-display-box">
+            <div className="carousel-ornament">⚜</div>
+            
+            <div className="wish-slide-frame" key={currentWish}>
+              <p className={`slide-message-text ${familyWishes[currentWish].message === "❤️" ? 'heart-emoji' : ''}`}>
+                {familyWishes[currentWish].message === "❤️" ? "❤️" : `"${familyWishes[currentWish].message}"`}
+              </p>
+              <h4 className="slide-author-title">- {familyWishes[currentWish].name}</h4>
+            </div>
+
+            <div className="carousel-nav-dots">
+              {familyWishes.map((_, i) => (
+                <button 
+                  key={i} 
+                  className={`nav-dot-btn ${currentWish === i ? 'active' : ''}`}
+                  onClick={() => setCurrentWish(i)}
+                  aria-label={`Go to wish ${i + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
