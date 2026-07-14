@@ -25,7 +25,7 @@ const App = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Countdown Timer Logic - Set to Nikah Time: Oct 25, 2026 at 11:30 AM
+  // Countdown Timer Logic - Set to Wedding Time: Oct 25, 2026 at 11:30 AM
   useEffect(() => {
     const targetDate = new Date("Oct 25, 2026 11:30:00").getTime();
     
@@ -49,7 +49,7 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Open the floral reveal
+  // Open the floral reveal and clear backdrop blurs
   const handleReveal = () => {
     setRevealOpen(true);
     setTimeout(() => { setRevealHidden(true); }, 1500);
@@ -72,7 +72,7 @@ const App = () => {
     <>
       <Particles />
 
-      {/* Floral Center Button Reveal */}
+      {/* Floral Center Button Reveal Overlay */}
       <div className={`floral-reveal-overlay ${revealOpen ? 'open' : ''} ${revealHidden ? 'hidden' : ''}`}>
         <div className="flower-container" onClick={handleReveal}>
           <div className="css-flower">
@@ -87,27 +87,177 @@ const App = () => {
         </div>
       </div>
 
-      {/* 1. Landing / Hero Screen */}
-      <header className="hero" id="home">
-        <div className="hero-content fade-in">
-          <p className="bismillah delay-1">﷽</p>
-          <p className="tagline delay-1" style={{ textTransform: 'none', fontStyle: 'italic', color: 'var(--text-main)' }}>
-            "And We created you in pairs" (Quran 78:8)
-          </p>
-          
-          <p className="tagline delay-2" style={{ marginTop: '20px' }}>Together with their families</p>
-          <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
-            Mr. Sulaiman KM & Mrs. Zaurabi KA
-          </p>
-          
-          <h1 className="delay-2" style={{ lineHeight: '1.2' }}>
-            Bilal <br />
-            <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
-            Fathima Zakiya
-          </h1>
+      {/* Main Content Container with blur filter logic */}
+      <div className={`main-app-content ${!revealOpen ? 'blurred-bg' : 'unveiled-bg'}`}>
+        
+        {/* 1. Landing / Hero Screen */}
+        <header className="hero" id="home">
+          <div className="hero-content fade-in">
+            <p className="bismillah delay-1">﷽</p>
+            <p className="tagline delay-1" style={{ textTransform: 'none', fontStyle: 'italic', color: 'var(--text-main)' }}>
+              "And We created you in pairs" (Quran 78:8)
+            </p>
+            
+            <p className="tagline delay-2" style={{ marginTop: '20px' }}>Together with their families</p>
+            <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
+              Mr. Sulaiman KM & Mrs. Zaurabi KA
+            </p>
+            
+            <h1 className="delay-2" style={{ lineHeight: '1.2' }}>
+              Bilal <br />
+              <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
+              Fathima Zakiya
+            </h1>
 
-          <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
-            Mr. Iqbal Hussain & Mrs. Rahamath
+            <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
+              Mr. Iqbal Hussain & Mrs. Rahamath
+            </p>
+            
+            <p className="invitation-line delay-3">Joyfully invite you to witness the Nikah and celebrate their union</p>
+            <p className="tagline delay-3" style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>October 25, 2026 • 11:30 AM</p>
+            <p className="tagline delay-3">Anvaya The Marquee, Kushalnagar</p>
+          </div>
+        </header>
+
+        {/* 2. Editorial Couple Showcase */}
+        <section className="section-padding" id="couple">
+          <div className="container fade-in">
+            <h2>Two Souls, One Journey</h2>
+            <p className="section-subtitle">Alhamdulillah</p>
+            
+            <div className="couple-showcase">
+              <div className="portrait-wrapper portrait-groom fade-in delay-1">
+                <img src="/Groom.jpg" alt="Bilal" loading="lazy" />
+                <div className="portrait-caption">
+                  Bilal
+                  <div className="portrait-role">The Groom</div>
+                </div>
+              </div>
+
+              <div className="portrait-wrapper portrait-bride fade-in delay-2">
+                <img src="/Bride.jpg" alt="Zakya Fathima" loading="lazy" />
+                <div className="portrait-caption">
+                  Fathima Zakiya
+                  <div className="portrait-role">The Bride</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Countdown Section */}
+        <section className="section-padding" id="countdown">
+          <div className="container fade-in">
+            <h2>Countdown to Nikah</h2>
+            <p className="section-subtitle">Every moment brings us closer, Insha'Allah</p>
+            
+            <div className="countdown-grid">
+              <div className="countdown-box"><span>{timeLeft.days}</span><label>Days</label></div>
+              <div className="countdown-box"><span>{timeLeft.hours}</span><label>Hours</label></div>
+              <div className="countdown-box"><span>{timeLeft.minutes}</span><label>Minutes</label></div>
+              <div className="countdown-box"><span>{timeLeft.seconds}</span><label>Seconds</label></div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Location & Schedule Section */}
+        <section className="section-padding events-container" id="events">
+          <div className="container fade-in">
+            <h2>The Auspicious Events</h2>
+            <p className="section-subtitle">Join us for an elegant evening of celebration as we begin this new chapter together.</p>
+            
+            <div className="event-grid">
+              <div className="event-card fade-in delay-1">
+                <span className="time-pill">Oct 24 • 7:00 PM</span>
+                <h3>Haldi & Mehendi</h3>
+                <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>The Sweet Home</p>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>Join us for a vibrant evening of traditional colors, henna, and joyous celebrations.</p>
+              </div>
+              
+              {/* The Nikah Event Card with Universally/Non-Religious Custom Calendar Details */}
+              <div className="event-card fade-in delay-2">
+                <span className="time-pill">Oct 25 • 11:30 AM</span>
+                <h3>The Nikah</h3>
+                <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Anvaya The Marquee</p>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px', marginBottom: '20px' }}>Witness the sacred exchange of vows and bless the couple as they say "Qubool Hai".</p>
+                
+                <a 
+                  href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Ceremony+%7C+Bilal+%26+Fathima+Zakiya&dates=20261025T060000Z/20261025T100000Z&details=We+cordially+invite+you+to+join+us+in+celebrating+the+wedding+ceremony+of+Bilal+and+Fathima+Zakiya+as+they+embark+on+this+beautiful+new+journey+together.%0A%0AWe+look+forward+to+sharing+this+special+milestone+with+you%21%0A%0AWarm+regards%2C%0AThe+Families.&location=Anvaya+The+Marquee%2C+Madikeri+Road%2C+Guddehosuru%2C+Kushalnagar+-+571234%2C+Karnataka" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="mini-calendar-link"
+                >
+                  Add to Calendar
+                </a>
+              </div>
+              
+              <div className="event-card fade-in delay-1">
+                <span className="time-pill">Play Now</span>
+                <h3>Wedding Games</h3>
+                <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Online Competition</p>
+                
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px' }}>
+                  Participate in our special cousins and guests games for a chance to win exciting prizes!
+                  <br /><br />
+                  <span style={{ color: 'var(--text-main)', fontWeight: 'bold' }}>Note:</span> A unique code is required to enter the game. If you are interested in playing. Please ask for the code via whatsapp.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '25px' }}>
+                  <a href="https://bilal-zakiya-nikah-2026.web.app/?open=1" target="_blank" rel="noreferrer" className="btn" style={{ padding: '12px 20px', fontSize: '0.8rem', width: '100%' }}>
+                    Start Playing
+                  </a>
+                  <a href="https://wa.me/9448946186?text=Hi!%20Could%20I%20please%20get%20my%20unique%20code%20for%20the%20wedding%20games?" target="_blank" rel="noreferrer" className="btn btn-outline" style={{ padding: '12px 20px', fontSize: '0.8rem', width: '100%' }}>
+                    Ask for Code via WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Details & Directions */}
+        <section className="section-padding container fade-in" id="venue-details">
+          <div className="details-box">
+            <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>Anvaya The Marquee</h4>
+            <p>Madikeri Road, Guddehosuru<br />Kushalnagar - 571234, Karnataka</p>
+            <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Join us as we celebrate in a setting of elegance and warmth. We look forward to sharing this special day with you.</p>
+            <div style={{ marginTop: '30px', display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href="https://www.google.com/maps/search/?api=1&query=Anvaya+The+Marquee,+Madikeri+Road,+Kushalnagar" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
+              <a href="#events" className="btn btn-outline">View Schedule</a>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. RSVP Button Section */}
+        <section className="rsvp-btn-container fade-in" id="rsvp">
+            <h2>Kindly Reply</h2>
+            <p className="section-subtitle">Please respond by October 15, 2026</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEV2Y_AYPQgkVze-CJvElCjKAJqzkzrh0HZLirqV0-UMUfuw/viewform?usp=sharing&ouid=117723795440602603986" target="_blank" rel="noreferrer" className="btn">RSVP via Google Forms</a>
+        </section>
+
+        {/* 7. Closing Section */}
+        <footer className="footer fade-in">
+          <div className="footer-content">
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Awaiting Your Presence</h3>
+            <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-light)' }}>
+              We look forward to celebrating this special day with you. Your presence and duas will make our celebration truly meaningful.
+            </p>
+            <p style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginTop: '40px' }}>With love & prayers,</p>
+            
+            <h2 style={{ lineHeight: '1.2' }}>
+              Bilal <br />
+              <span style={{ fontSize: '0.6em', color: 'var(--accent-color)', fontStyle: 'italic' }}>&</span> <br />
+              Fathima Zakiya
+            </h2>
+          </div>
+        </footer>
+      </div>
+      <Analytics />
+    </>
+  );
+};
+
+export default App;
           </p>
           
           <p className="invitation-line delay-3">Joyfully invite you to witness the Nikah and celebrate their union</p>
