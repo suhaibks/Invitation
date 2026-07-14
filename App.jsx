@@ -6,6 +6,23 @@ const App = () => {
   const [revealOpen, setRevealOpen] = useState(false);
   const [revealHidden, setRevealHidden] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  
+  // Wishes & Blessings Live Feed State Logic (Set to 0 messages initially)
+  const [wishes, setWishes] = useState([]);
+  const [guestName, setGuestName] = useState("");
+  const [guestMessage, setGuestMessage] = useState("");
+
+  const handleWishSubmission = (e) => {
+    e.preventDefault();
+    if (!guestName.trim() || !guestMessage.trim()) return;
+
+    // Append the new wish to the top of the live feed array
+    setWishes([{ name: guestName, message: guestMessage }, ...wishes]);
+    
+    // Clear the input fields safely
+    setGuestName("");
+    setGuestMessage("");
+  };
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -107,10 +124,10 @@ const App = () => {
           </h1>
 
           <p className="tagline delay-2" style={{ fontSize: '0.6rem', marginTop: '5px' }}>
-            Mr. Iqbal Hussain & Mrs. Rahamath
+            [Bride's Parents' Names]
           </p>
           
-          <p className="invitation-line delay-3">Joyfully invite you to witness the Nikah and celebrate their union</p>
+          <p className="invitation-line delay-3">Request the pleasure of your presence at their wedding celebration</p>
           <p className="tagline delay-3" style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>October 25, 2026 • 11:30 AM</p>
           <p className="tagline delay-3">Anvaya The Marquee, Kushalnagar</p>
         </div>
@@ -145,7 +162,7 @@ const App = () => {
       {/* 3. Countdown Section */}
       <section className="section-padding" id="countdown">
         <div className="container fade-in">
-          <h2>Countdown to Nikah</h2>
+          <h2>Counting Down to Our Celebration</h2>
           <p className="section-subtitle">Every moment brings us closer, Insha'Allah</p>
           
           <div className="countdown-grid">
@@ -188,50 +205,92 @@ const App = () => {
                 <span style={{ color: 'var(--text-main)', fontWeight: 'bold' }}>Note:</span> A unique code is required to enter the game. If you are interested in playing. Please ask for the code via whatsapp.
               </p>
 
-              {/* Buttons Container */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '25px' }}>
-                
-                {/* Play Button */}
                 <a href="https://bilal-zakiya-nikah-2026.web.app/?open=1" target="_blank" rel="noreferrer" className="btn" style={{ padding: '12px 20px', fontSize: '0.8rem', width: '100%' }}>
                   Start Playing
                 </a>
-
-                {/* WhatsApp Button */}
-                {/* Make sure to replace YOUR_PHONE_NUMBER with your actual number including the country code, e.g., 919876543210 */}
                 <a href="https://wa.me/9448946186?text=Hi!%20Could%20I%20please%20get%20my%20unique%20code%20for%20the%20wedding%20games?" target="_blank" rel="noreferrer" className="btn btn-outline" style={{ padding: '12px 20px', fontSize: '0.8rem', width: '100%' }}>
                   Ask for Code via WhatsApp
                 </a>
-                
               </div>
             </div>
-            
           </div>
         </div>
       </section>
 
-      {/* 5. Details & Directions */}
+      {/* 5. Interactive Wishes & Blessings Board */}
+      <section className="wishes-section section-padding fade-in" id="wishes">
+        <div className="container">
+          <h2>Wishes & Blessings</h2>
+          <p className="section-subtitle">Leave a beautiful message for the couple</p>
+          
+          <div className="wishes-layout">
+            {/* Input Form Box */}
+            <form onSubmit={handleWishSubmission} className="wish-form-card">
+              <h3>Share Your Blessings</h3>
+              <div className="wish-input-group">
+                <input 
+                  type="text" 
+                  placeholder="Your Name" 
+                  value={guestName}
+                  onChange={(e) => setGuestName(e.target.value)}
+                  required 
+                />
+              </div>
+              <div className="wish-input-group">
+                <textarea 
+                  placeholder="Write your beautiful prayers or congratulations here..." 
+                  rows="4"
+                  value={guestMessage}
+                  onChange={(e) => setGuestMessage(e.target.value)}
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" className="btn" style={{ width: '100%', minHeight: '44px' }}>
+                Post Blessing
+              </button>
+            </form>
+
+            {/* Scrolling Live Feed Wall */}
+            <div className="wishes-wall">
+              {wishes.length === 0 ? (
+                <div className="wish-board-card" style={{ borderLeftColor: 'rgba(90, 112, 99, 0.3)', textAlign: 'center' }}>
+                  <p className="wish-board-message" style={{ margin: 0 }}>No messages yet. Be the first to leave a blessing!</p>
+                </div>
+              ) : (
+                wishes.map((wish, index) => (
+                  <div className="wish-board-card" key={index}>
+                    <p className="wish-board-message">"{wish.message}"</p>
+                    <h4 className="wish-board-name">- {wish.name}</h4>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Details & Directions (Venue Map Section) */}
       <section className="section-padding container fade-in" id="venue-details">
         <div className="details-box">
           <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>Anvaya The Marquee</h4>
           <p>Madikeri Road, Guddehosuru<br />Kushalnagar - 571234, Karnataka</p>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Join us as we celebrate in a setting of elegance and warmth. We look forward to sharing this special day with you.</p>
           <div style={{ marginTop: '30px', display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {/* Auto-searching Google Maps Link */}
-            <a href="https://www.google.com/maps/search/?api=1&query=Anvaya+The+Marquee,+Madikeri+Road,+Kushalnagar" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
+            <a href="https://maps.google.com/?q=Anvaya+The+Marquee+Kushalnagar" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
             <a href="#events" className="btn btn-outline">View Schedule</a>
           </div>
         </div>
       </section>
 
-      {/* 6. RSVP Button Section */}
+      {/* 7. RSVP Button Section */}
       <section className="rsvp-btn-container fade-in" id="rsvp">
           <h2>Kindly Reply</h2>
           <p className="section-subtitle">Please respond by October 15, 2026</p>
-          {/* Your direct Google Form link */}
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEV2Y_AYPQgkVze-CJvElCjKAJqzkzrh0HZLirqV0-UMUfuw/viewform?usp=sharing&ouid=117723795440602603986" target="_blank" rel="noreferrer" className="btn">RSVP via Google Forms</a>
       </section>
 
-      {/* 7. Closing Section */}
+      {/* 8. Closing Section */}
       <footer className="footer fade-in">
         <div className="footer-content">
           <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Awaiting Your Presence</h3>
@@ -253,4 +312,3 @@ const App = () => {
 };
 
 export default App;
-      
