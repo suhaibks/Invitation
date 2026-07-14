@@ -187,7 +187,7 @@ const App = () => {
                   rel="noreferrer" 
                   className="mini-calendar-link"
                 >
-                  📅 Add to Calendar
+                   Add to Calendar
                 </a>
               </div>
               
