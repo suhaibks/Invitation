@@ -32,6 +32,23 @@ p { margin-bottom: 1rem; font-weight: 300; }
 .section-padding { padding: var(--spacing) 0; }
 .text-center { text-align: center; }
 
+/* --- Interactive Unveil Blur Framework --- */
+.main-app-content {
+  transition: filter 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: filter;
+}
+
+.blurred-bg {
+  filter: blur(15px);
+  pointer-events: none;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.unveiled-bg {
+  filter: blur(0px);
+}
+
 /* --- Ambient Particle Effects --- */
 .particles-container { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
 .particle {
@@ -118,10 +135,29 @@ p { margin-bottom: 1rem; font-weight: 300; }
 /* Events Section */
 .events-container { background-color: var(--muted-bg); }
 .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-.event-card { background-color: var(--bg-color); padding: 40px 30px; text-align: center; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: transform var(--trans-fast) ease; border-top: 3px solid var(--accent-color); }
+.event-card { background-color: var(--bg-color); padding: 40px 30px; text-align: center; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: transform var(--trans-fast) ease; border-top: 3px solid var(--accent-color); display: flex; flex-direction: column; justify-content: space-between; }
 .event-card:hover { transform: translateY(-5px); }
 .event-card h3 { font-size: 1.8rem; margin-bottom: 10px; color: var(--text-main); }
-.event-card .time-pill { display: inline-block; padding: 4px 12px; background: var(--muted-bg); color: var(--text-main); font-size: 0.8rem; letter-spacing: 1px; border-radius: 20px; margin-bottom: 15px; border: 1px solid rgba(212,175,55,0.3); }
+.event-card .time-pill { display: inline-block; padding: 4px 12px; background: var(--muted-bg); color: var(--text-main); font-size: 0.8rem; letter-spacing: 1px; border-radius: 20px; margin-bottom: 15px; border: 1px solid rgba(212,175,55,0.3); align-self: center; }
+
+/* --- Sleek Calendar Shortcuts Links --- */
+.mini-calendar-link {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 15px;
+  padding: 6px 0;
+  transition: color var(--trans-fast) ease;
+}
+
+.mini-calendar-link:hover {
+  color: var(--text-main);
+}
 
 /* Venue & Details */
 .details-box { border: 1px solid rgba(212, 175, 55, 0.4); padding: 40px; text-align: center; margin: 40px auto 0; max-width: 600px; background: #FFF; border-radius: 4px; }
