@@ -6,37 +6,6 @@ const App = () => {
   const [revealOpen, setRevealOpen] = useState(false);
   const [revealHidden, setRevealHidden] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  
-  // Custom Family Wishes Data Array (Without Relation Tags)
-  const familyWishes = [
-    {
-      name: "Suhaib",
-      message: "Wishing you both a lifetime of love, joy, and beautiful memories. Congratulations!"
-    },
-    {
-      name: "Habeeba",
-      message: "May Allah bless your marriage with endless love, happiness, and barakah. Congratulations!"
-    },
-    {
-      name: "Shamir",
-      message: "May your journey together be filled with peace, laughter, and countless blessings. Congratulations!"
-    },
-    {
-      name: "Nuh",
-      message: "❤️"
-    }
-  ];
-
-  // Carousel State
-  const [currentWish, setCurrentWish] = useState(0);
-
-  // Auto-slide effect every 5 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentWish((prev) => (prev + 1) % familyWishes.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [familyWishes.length]);
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -56,7 +25,7 @@ const App = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Countdown Timer Logic - Nikah Time: Oct 25, 2026 at 11:30 AM
+  // Countdown Timer Logic - Set to Nikah Time: Oct 25, 2026 at 11:30 AM
   useEffect(() => {
     const targetDate = new Date("Oct 25, 2026 11:30:00").getTime();
     
@@ -219,71 +188,49 @@ const App = () => {
                 <span style={{ color: 'var(--text-main)', fontWeight: 'bold' }}>Note:</span> A unique code is required to enter the game. If you are interested in playing. Please ask for the code via whatsapp.
               </p>
 
+              {/* Buttons Container */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '25px' }}>
+                
+                {/* Play Button */}
                 <a href="https://bilal-zakiya-nikah-2026.web.app/?open=1" target="_blank" rel="noreferrer" className="btn" style={{ padding: '12px 20px', fontSize: '0.8rem', width: '100%' }}>
                   Start Playing
                 </a>
+
+                {/* WhatsApp Button */}
                 <a href="https://wa.me/9448946186?text=Hi!%20Could%20I%20please%20get%20my%20unique%20code%20for%20the%20wedding%20games?" target="_blank" rel="noreferrer" className="btn btn-outline" style={{ padding: '12px 20px', fontSize: '0.8rem', width: '100%' }}>
                   Ask for Code via WhatsApp
                 </a>
+                
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Static Family Wishes Slideshow Section */}
-      <section className="wishes-slideshow-section section-padding fade-in" id="wishes">
-        <div className="container">
-          <h2>Family Blessings</h2>
-          <div className="cinematic-line"></div>
-          <p className="section-subtitle">Duas & warm wishes for the couple</p>
-
-          <div className="carousel-display-box">
-            <div className="carousel-ornament">⚜</div>
             
-            <div className="wish-slide-frame" key={currentWish}>
-              <p className={`slide-message-text ${familyWishes[currentWish].message === "❤️" ? 'heart-emoji' : ''}`}>
-                {familyWishes[currentWish].message === "❤️" ? "❤️" : `"${familyWishes[currentWish].message}"`}
-              </p>
-              <h4 className="slide-author-title">- {familyWishes[currentWish].name}</h4>
-            </div>
-
-            <div className="carousel-nav-dots">
-              {familyWishes.map((_, i) => (
-                <button 
-                  key={i} 
-                  className={`nav-dot-btn ${currentWish === i ? 'active' : ''}`}
-                  onClick={() => setCurrentWish(i)}
-                  aria-label={`Go to wish ${i + 1}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Details & Directions (Venue Map Section) */}
+      {/* 5. Details & Directions */}
       <section className="section-padding container fade-in" id="venue-details">
         <div className="details-box">
           <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-color)' }}>Anvaya The Marquee</h4>
           <p>Madikeri Road, Guddehosuru<br />Kushalnagar - 571234, Karnataka</p>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '20px' }}>Join us as we celebrate in a setting of elegance and warmth. We look forward to sharing this special day with you.</p>
           <div style={{ marginTop: '30px', display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="https://maps.google.com/?q=Anvaya+The+Marquee+Kushalnagar" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
+            {/* Auto-searching Google Maps Link */}
+            <a href="https://www.google.com/maps/search/?api=1&query=Anvaya+The+Marquee,+Madikeri+Road,+Kushalnagar" target="_blank" rel="noreferrer" className="btn">Open in Google Maps</a>
             <a href="#events" className="btn btn-outline">View Schedule</a>
           </div>
         </div>
       </section>
 
-      {/* 7. RSVP Button Section */}
+      {/* 6. RSVP Button Section */}
       <section className="rsvp-btn-container fade-in" id="rsvp">
           <h2>Kindly Reply</h2>
           <p className="section-subtitle">Please respond by October 15, 2026</p>
+          {/* Your direct Google Form link */}
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEV2Y_AYPQgkVze-CJvElCjKAJqzkzrh0HZLirqV0-UMUfuw/viewform?usp=sharing&ouid=117723795440602603986" target="_blank" rel="noreferrer" className="btn">RSVP via Google Forms</a>
       </section>
 
-      {/* 8. Closing Section */}
+      {/* 7. Closing Section */}
       <footer className="footer fade-in">
         <div className="footer-content">
           <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Awaiting Your Presence</h3>
